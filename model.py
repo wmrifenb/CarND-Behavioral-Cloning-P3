@@ -91,6 +91,7 @@ history_object = model.fit_generator(train_generator, samples_per_epoch=len(trai
 print(history_object.history.keys())
 
 # Plot the training and validation loss for each epoch
+fig = plt.figure()
 plt.plot(history_object.history['loss'])
 plt.plot(history_object.history['val_loss'])
 plt.title('model mean squared error loss')
@@ -98,5 +99,6 @@ plt.ylabel('mean squared error loss')
 plt.xlabel('epoch')
 plt.legend(['training set', 'validation set'], loc='upper right')
 plt.show()
+fig.savefig('mse_loss')
 
 model.save('model.h5')
