@@ -7,7 +7,6 @@ from keras.layers.convolutional import Convolution2D
 from keras.models import Sequential
 from keras.layers import Cropping2D
 from utils import *
-from keras.layers.advanced_activations import ELU
 
 from sklearn.model_selection import train_test_split
 
