@@ -41,11 +41,11 @@ The model.py file contains the code for training and saving the convolution neur
 
 I used nVidia's CNN architecture as described in their paper [here](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) .
 
-The model contains a Keras lamba layer to normalize the channels in the image (model.py line 73) and a Keras Cropping layer to crop the top half and of the camera images as well as the car hood in the bottom. (model.py lines 72 and 73)
+The model contains a Keras lamba layer to normalize the channels in the image (model.py line 73) and a Keras Cropping layer to crop the top half and of the camera images as well as the car hood in the bottom. (model.py lines 72)
 
 #### 2. Attempts to reduce overfitting in the model
 
-Overfitting was manually monitored by plotting the Mean Squared Error of the model for both the training data and the validation data versus the epoch. The plot made for the traning of the model.h5 file is shown below:
+Overfitting was manually monitored by plotting the Mean Squared Error Loss of the model for both the training data and the validation data versus the epoch. The plot made during the traning of the model.h5 file is shown below:
 
 ![alt text][image1]
 
@@ -71,7 +71,7 @@ What I eventually arrived upon is that increasing the number of epochs to 6 was 
 
 #### 2. Final Model Architecture
 
-The final model was unadultarated nvidia architecture (model.py lines 71-83)
+The final model was the unadulturated nvidia architecture (model.py lines 71-83)
 
 ```python
 # NVIDIA Architecture
@@ -92,28 +92,12 @@ model.add(Dense(1))
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+To generalize the model, I recorded one lap on the second track using center lane driving.
 
-![alt text][image2]
+This data combined with the data provided by Udacity's first track runs proved sufficient for training.
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+To augment the data, I also flipped images and angles and included the left and right camera images as well. I corrected the steering anlge for the left camera image by adding correction value and did the same for the right camera images by subtracting the correction value. I chose 0.2 as a starting point for steering correction and ran training several times before arriving at 0.25 as a good steering correction according to how well the model autonomously drove the car. Having a powerful nvidia GPU at my disposal enabled me to quickly do this.
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+I randomly shuffled the data set and put 20% of the data into a validation set. I used a generator to handle the massive amounts of image data in batches of 32 image samples each to mitigate memory issues during training (model.py lines 31-63)
 
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+Using six epochs, I trained the model that would succesfully drive one lap around the course.
