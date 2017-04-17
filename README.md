@@ -11,6 +11,7 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./mse_loss.png " Model Mean Squared Error (MSE) by Epoch"
+[image2]: ./examples/youtube_link.png "Course 2 video"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.
@@ -92,7 +93,9 @@ model.add(Dense(1))
 
 #### 3. Creation of the Training Set & Training Process
 
-To generalize the model, I recorded one lap on the second track using center lane driving.
+To generalize the model, I recorded one lap on the second track using center lane driving. Below is a link to a video of the entire course at 120 FPS
+
+[![alt text][image2]](https://youtu.be/ICDDawfclNU)
 
 This data combined with the data provided by Udacity's first track runs proved sufficient for training.
 
