@@ -103,4 +103,6 @@ To augment the data, I also flipped images and angles and included the left and 
 
 I randomly shuffled the data set and put 20% of the data into a validation set. I used a generator to handle the massive amounts of image data in batches of 32 image samples each to mitigate memory issues during training (model.py lines 31-63)
 
-Using six epochs, I trained the model that would succesfully drive one lap around the course.
+Using six epochs, I trained the model that would succesfully drive one lap around the course:
+
+[Click here for video.mp4](https://github.com/wmrifenb/CarND-Behavioral-Cloning-P3/blob/master/video.mp4)
